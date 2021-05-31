@@ -1,11 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-count = 0
+import pandas as pd
+
 book_details = []
 s = requests.Session()
 
 for page in range(1,51):
-    print(page)
+    print("scraping page number", page)
     url = f'https://books.toscrape.com/catalogue/page-{page}.html'
     headers = {
         'User-Agent': 	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36',
@@ -28,7 +29,7 @@ for page in range(1,51):
             'stock': stock,
         }
         book_details.append(detail)
-        count +=1
 
-print(count)
-print(book_details)
+df = pd.DataFrame(book_details)
+df.to_csv('books.csv', index = False)
+print("Scraping complete!!!")
