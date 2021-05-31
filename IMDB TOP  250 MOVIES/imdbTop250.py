@@ -1,9 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import pandas as pd
 
 url = 'https://www.imdb.com/chart/top/'
 s = requests.Session()
+print('scraping...')
 r = s.get(url)
 
 soup = BeautifulSoup(r.text, 'lxml')
@@ -29,4 +31,7 @@ for movie in movies:
 with open('imdbTop250.json', 'w') as f:
     json.dump(MovieDetails, f)
 
-print('Complete!!!')
+df = pd.DataFrame(MovieDetails)
+df.to_csv('imdbTop250.csv', index = False)
+
+print('Scraping Complete!!!')
