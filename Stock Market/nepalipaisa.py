@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import pandas as pd
 
 class MyStock():
     def __init__(self, fromdate, toDate, stockSymbol):
@@ -64,3 +65,7 @@ if __name__ == "__main__":
     records = Stock.getRecords()
     with open('sharerecords.json', 'w') as f:
         json.dump(records, f)
+    df = pd.DataFrame(records)
+    df.to_csv('sharerecord.csv', index=False)
+    print("complete!!!")
+
