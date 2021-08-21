@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-payload = {'stock_symbol': 'ULI', 'StockSymbol_Select': ''}
-
 
 headers = {
     'Host': 'www.nepalstock.com',
