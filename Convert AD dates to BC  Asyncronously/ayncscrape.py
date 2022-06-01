@@ -1,7 +1,6 @@
 import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
-import time
 
 
 async def get_dates(session, year, month, day):
@@ -47,6 +46,5 @@ dates = [(year, month, day), (year, month, day), ...] in AD
 
 def get_nepali_dates(dates):
     loop = asyncio.get_event_loop()
-    start = time.perf_counter()
     results = loop.run_until_complete(main(dates))
     return (parse((results)))
